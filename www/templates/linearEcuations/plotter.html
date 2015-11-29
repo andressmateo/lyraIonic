@@ -1,0 +1,11 @@
+<ion-view view-title="Plotter">
+  <ion-content>
+    <br>
+    <h3>Write the ecuation: </h3>
+      <input type="text"  id="fx" name="fx" ng-model="fx" placeholder="Ecuation">
+      <button class="button button-full button-positive" ng-click="plot(fx)">
+        Plot :D
+      </button>
+    <div id="myPlot" style="width:600px;height:400px;"></div>
+  </ion-content>
+</ion-view>
