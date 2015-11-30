@@ -33,7 +33,7 @@ Maximum number of iterations allowed</span>
 
     <div ng-switch on="method">
       <div ng-switch-when="bisection">
-        <h3><b>Bisection</b></h3>
+        <h3><b>Regula-Falsi</b></h3>
         <div class="list">
           <label class="item item-input item-stacked-label">
             <span class="input-label">Top limit</span>
@@ -47,13 +47,64 @@ Maximum number of iterations allowed</span>
           Back
         </button>
       </div>
-      <div ng-switch-when="regula">
+      <div ng-switch-when="regula_falsi">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Top limit</span>
+            <input type="text" placeholder="1.5" ng-model="formData.xf">
+          </label>
+        </div>
+        <button class="button button-full button-positive" ng-click="regula()">
+          Solve Ecuation
+        </button>
+        <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+          Back
+        </button>
       </div>
-      <div ng-switch-when="fixed">
+      <div ng-switch-when="fixed_point">
+        <h3><b>Fixed-Point</b></h3>
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">g(x)</span>
+            <input type="text" placeholder="g(x)" ng-model="formData.fg">
+          </label>
+        </div>
+        <button class="button button-full button-positive" ng-click="fixed()">
+          Solve Ecuation
+        </button>
+        <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+          Back
+        </button>
       </div>
       <div ng-switch-when="newton">
+        <h3><b>Newton</b></h3>
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">First derivate of the Fx</span>
+            <input type="text" placeholder="f'(x)" ng-model="formData.fnx">
+          </label>
+        </div>
+        <button class="button button-full button-positive" ng-click="newton()">
+          Solve Ecuation
+        </button>
+        <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+          Back
+        </button>
       </div>
       <div ng-switch-when="secant">
+        <h3><b>Secant</b></h3>
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Top limit</span>
+            <input type="text" placeholder="1.5" ng-model="formData.xf">
+          </label>
+        </div>
+        <button class="button button-full button-positive" ng-click="secant()">
+          Solve Ecuation
+        </button>
+        <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+          Back
+        </button>
       </div>
       <div ng-switch-when="multiple">
       </div>
@@ -63,10 +114,10 @@ Maximum number of iterations allowed</span>
             <a class="item" ng-click="changeMethod('bisection')" >
               Bisection
             </a>
-            <a class="item" ng-click="changeMethod('regula')">
+            <a class="item" ng-click="changeMethod('regula_falsi')">
               Regula-Falsi
             </a>
-            <a class="item" ng-click="changeMethod('fixed')" >
+            <a class="item" ng-click="changeMethod('fixed_point')" >
               Fixed Point
             </a>
             <a class="item" ng-click="changeMethod('newton')">
@@ -100,8 +151,8 @@ Maximum number of iterations allowed</span>
       <div class="item item-text-wrap" ng-repeat="iter in iterations">
           <h5><b># </b> {{iter.i}} </h5>
           <h5><b>Error </b> {{iter.error}} </h5>
-          <h5><b>Xi </b> {{iter.xi}} </h5>
-          <h5><b>Xf </b> {{iter.xf}} </h5>
+          <h5 ng-if="iter.xi"><b>Xi </b> {{iter.xi}} </h5>
+          <h5 ng-if="iter.xf"><b>Xf </b> {{iter.xf}} </h5>
           <h5><b>Ym </b> {{iter.ym}} </h5>
       </div>
     </div>

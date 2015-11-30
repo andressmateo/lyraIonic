@@ -89,6 +89,114 @@ angular.module('starter.controllers', [])
       $scope.res = res.data;
     })
   }
+
+  $scope.regula = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        url: 'http://wmcia.herokuapp.com/api/rootmethods/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        alert(res.data.status);
+        $scope.succes = true;
+        for (var i = 0; i < res.data.table.iter; i++){
+          var iter = {error:res.data.table.error[i], xf: res.data.table.xf[i],
+          xi: res.data.table.xi[i], i:i, ym: res.data.table.ym[i]};
+          $scope.iterations.push(iter);
+        }
+    }
+      //alert($scope.iterations.length)
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
+  $scope.fixed = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        url: 'http://wmcia.herokuapp.com/api/rootmethods/',
+        //url: 'http://127.0.0.1:5000/api/rootmethods/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        //alert(res.data.status);
+        $scope.succes = true;
+        for (var i = 0; i < res.data.table.iter; i++){
+          var iter = {error:res.data.table.error[i],
+          i:i, ym: res.data.table.ym[i]};
+          $scope.iterations.push(iter);
+        }
+    }
+      //alert($scope.iterations.length)
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
+  $scope.newton = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        url: 'http://wmcia.herokuapp.com/api/rootmethods/',
+        //url: 'http://127.0.0.1:5000/api/rootmethods/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        //alert(res.data.status);
+        $scope.succes = true;
+        for (var i = 0; i < res.data.table.iter; i++){
+          var iter = {error:res.data.table.error[i],
+          i:i, ym: res.data.table.xns[i]};
+          $scope.iterations.push(iter);
+        }
+    }
+      //alert($scope.iterations.length)
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
+  $scope.secant = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        //url: 'http://127.0.0.1:5000/api/rootmethods/',
+        url: 'http://wmcia.herokuapp.com/api/rootmethods/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        //alert(res.data.status);
+        $scope.succes = true;
+        for (var i = 0; i < res.data.table.iter; i++){
+          var iter = {error:res.data.table.error[i],
+          i:i, ym: res.data.table.xn[i]};
+          $scope.iterations.push(iter);
+        }
+    }
+      //alert($scope.iterations.length)
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
   $scope.showModal = function(){
     $ionicModal.fromTemplateUrl('results.html', {
         scope: $scope,
