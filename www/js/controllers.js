@@ -52,6 +52,47 @@ angular.module('starter.controllers', [])
   ];
 })
 
+.controller('LinearEcuationsCtrl', function($http, $scope, $ionicModal, $httpParamSerializer) {
+
+  $scope.method;
+
+  $scope.formData = {};
+
+  $scope.changeMethod = function(method){
+    $scope.method = method;
+    $scope.formData.method = method;
+  }
+
+  $scope.bisection = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        url: 'http://127.0.0.1:5000/api/rootmethods/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.message);
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
+  $scope.showModal = function(){
+    $ionicModal.fromTemplateUrl('results.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+         $scope.modal.show();
+      });
+  };
+
+
+
+})
+
 .controller('PlotterCtrl', function($scope, $stateParams) {
   /********************************************************************
   Online plotter:   http://fooplot.com/

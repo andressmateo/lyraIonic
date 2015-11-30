@@ -1,7 +1,99 @@
 <ion-view view-title="Linear Ecuations">
   <ion-content>
-    Algo Aquí....
-<ion-view>
-</ion-view>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Ecuation</span>
+        <input type="text" placeholder="Fx = sin(x)" ng-model="formData.fx">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Tolerance</span>
+        <input type="text" placeholder="10e-13" ng-model="formData.tol">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">
+Maximum number of iterations allowed</span>
+        <input type="text" placeholder="40" ng-model="formData.iter">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Initial value</span>
+        <input type="text" placeholder="0.5" ng-model="formData.xi">
+      </label>
+    </div>
+    <ul class="list">
+      <li class="item item-toggle">
+         Relative error
+         <label class="toggle toggle-positive">
+           <input type="checkbox" ng-model="formData.e">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+    </ul>
+
+    <div ng-switch on="method">
+      <div ng-switch-when="bisection">
+        <h3><b>Bisection</b></h3>
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Top limit</span>
+            <input type="text" placeholder="1.5" ng-model="formData.xf">
+          </label>
+        </div>
+        <button class="button button-full button-positive" ng-click="bisection()">
+          Solve Ecuation
+        </button>
+        <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+          Back
+        </button>
+      </div>
+      <div ng-switch-when="regula">
+      </div>
+      <div ng-switch-when="fixed">
+      </div>
+      <div ng-switch-when="newton">
+      </div>
+      <div ng-switch-when="secant">
+      </div>
+      <div ng-switch-when="multiple">
+      </div>
+      <div ng-switch-default>
+        <div class="list">
+          <div class="item">
+            <a class="item" ng-click="changeMethod('bisection')" >
+              Bisection
+            </a>
+            <a class="item" ng-click="changeMethod('regula')">
+              Regula-Falsi
+            </a>
+            <a class="item" ng-click="changeMethod('fixed')" >
+              Fixed Point
+            </a>
+            <a class="item" ng-click="changeMethod('newton')">
+              Newton
+            </a>
+            <a class="item" ng-click="changeMethod('secant')" >
+              Secant
+            </a>
+            <a class="item" ng-click="changeMethod('multiple')">
+               Multiple Roots
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
+
+<script id="results.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+    <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="modal.hide()"></a>
+      <h1 class="title">Results</h1>
+    </ion-header-bar>
+    <ion-content>
+    <br>
+    <h3>{{res.message}}</h3>
+    </ion-content>
+  </ion-modal-view>
+</script>

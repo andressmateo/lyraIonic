@@ -69,19 +69,14 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
     .state('app.linearEcuations', {
-    url: '/app/linearEcuations',
-    abstract: true,
-    templateUrl: 'templates/LinearEcuations/linearEcuations.html',
-    controller: 'LinearEcuationsCtrl'
-    })
-
-    .state('linearEcuations.bisection', {
-      url: '/playlists/:playlistId',
+      url: '/linearEcuations',
       views: {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        'menuContent': {
+          templateUrl: 'templates/linearEcuations/LinearEcuations.html',
+          controller: 'LinearEcuationsCtrl'
+        }
       }
-    });
+    })
 
   .state('app.single', {
     url: '/playlists/:playlistId',
