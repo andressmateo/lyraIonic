@@ -58,6 +58,7 @@ angular.module('starter.controllers', [])
 
   $scope.formData = {};
   $scope.iterations = [];
+  $scope.succes = false;
 
   $scope.changeMethod = function(method){
     $scope.method = method;
@@ -74,17 +75,20 @@ angular.module('starter.controllers', [])
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).then(function(res){
       //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        alert(res.data.status);
+        $scope.succes = true;
+        for (var i = 0; i < res.data.table.iter; i++){
+          var iter = {error:res.data.table.error[i], xf: res.data.table.xf[i],
+          xi: res.data.table.xi[i], i:i, ym: res.data.table.ym[i]};
+          $scope.iterations.push(iter);
+        }
+    }
+      //alert($scope.iterations.length)
       $scope.showModal();
-      for (var i = 0; i < res.data.table.iter; i++){
-        var iter = {error:res.data.table.error[i], xf: res.data.table.xf[i],
-        xi: res.data.table.xi[i], i:i, ym: res.data.table.ym[i]};
-        $scope.iterations.push(iter);
-      }
-      alert($scope.iterations.length)
       $scope.res = res.data;
     })
   }
-
   $scope.showModal = function(){
     $ionicModal.fromTemplateUrl('results.html', {
         scope: $scope,

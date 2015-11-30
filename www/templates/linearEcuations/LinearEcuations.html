@@ -95,8 +95,8 @@ Maximum number of iterations allowed</span>
     <br>
     <h3><b>Result</b></h3>
     <h4>{{res.message}}</h4>
-    <h3><b>Iteraciones:</b></h3>
-    <div class="card">
+    <h3 ng-if="succes"><b>Iterations</b></h3>
+    <div class="card" ng-if="succes">
       <div class="item item-text-wrap" ng-repeat="iter in iterations">
           <h5><b># </b> {{iter.i}} </h5>
           <h5><b>Error </b> {{iter.error}} </h5>
