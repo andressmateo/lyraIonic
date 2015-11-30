@@ -57,12 +57,12 @@ angular.module('starter.controllers', [])
   $scope.method;
 
   $scope.formData = {};
+  $scope.iterations = [];
 
   $scope.changeMethod = function(method){
     $scope.method = method;
     $scope.formData.method = method;
   }
-
   $scope.bisection = function(){
     if($scope.formData.e){
       $scope.formData.e = 1;
@@ -73,8 +73,14 @@ angular.module('starter.controllers', [])
         data: $httpParamSerializer($scope.formData),  // pass in data as string
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).then(function(res){
-      //alert(res.data.message);
+      alert(res.data.table.iter);
       $scope.showModal();
+      for (var i = 0; i < res.data.table.iter; i++){
+        var iter = {error:res.data.table.error[i], xf: res.data.table.xf[i],
+        xi: res.data.table.xi[i], i:i, ym: res.data.table.ym[i]};
+        $scope.iterations.push(iter);
+      }
+      alert($scope.iterations.length)
       $scope.res = res.data;
     })
   }
@@ -88,8 +94,6 @@ angular.module('starter.controllers', [])
          $scope.modal.show();
       });
   };
-
-
 
 })
 

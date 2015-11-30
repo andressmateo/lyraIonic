@@ -93,7 +93,19 @@ Maximum number of iterations allowed</span>
     </ion-header-bar>
     <ion-content>
     <br>
-    <h3>{{res.message}}</h3>
+    <h3><b>Result</b></h3>
+    <h4>{{res.message}}</h4>
+    <h3><b>Iteraciones:</b></h3>
+    <div class="card">
+      <div class="item item-text-wrap" ng-repeat="iter in iterations">
+          <h5><b># </b> {{iter.i}} </h5>
+          <h5><b>Error </b> {{iter.error}} </h5>
+          <h5><b>Xi </b> {{iter.xi}} </h5>
+          <h5><b>Xf </b> {{iter.xf}} </h5>
+          <h5><b>Ym </b> {{iter.ym}} </h5>
+      </div>
+    </div>
+    <a class="button icon-left ion-chevron-left button-positive" ng-click="modal.hide()"> Back</a>
     </ion-content>
   </ion-modal-view>
 </script>
