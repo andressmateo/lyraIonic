@@ -69,11 +69,11 @@ angular.module('starter.controllers', [])
     }
     $http({
         method: 'POST',
-        url: 'http://127.0.0.1:5000/api/rootmethods/',
+        url: 'http://wmcia.herokuapp.com/api/rootmethods/',
         data: $httpParamSerializer($scope.formData),  // pass in data as string
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).then(function(res){
-      alert(res.data.table.iter);
+      //alert(res.data.table.iter);
       $scope.showModal();
       for (var i = 0; i < res.data.table.iter; i++){
         var iter = {error:res.data.table.error[i], xf: res.data.table.xf[i],
