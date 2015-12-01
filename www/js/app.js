@@ -87,6 +87,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+    .state('app.interpolation', {
+      url: '/interpolation',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/linearEcuations/interpolation.html',
+          controller: 'InterpolationCtrl'
+        }
+      }
+    })
 
   .state('app.single', {
     url: '/playlists/:playlistId',

@@ -1,5 +1,160 @@
-<ion-view view-title="Linear Ecuations">
+<ion-view view-title="Matrix Equation Methods">
   <ion-content>
-
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Write the A matrix using brackets</span>
+        <input type="text" placeholder="A: [[1,2,3],[4,5,6]]" ng-model="formData.A">
+      </label>
+    </div>
+    <div ng-switch on="method">
+      <div ng-switch-when="jacobi">
+        <h3><b>Jacobi</b></h3>
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Iterations</span>
+            <input type="text" placeholder="F'(x)" ng-model="formData.n">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Solution matrix</span>
+            <input type="text" placeholder="" ng-model="formData.b">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Vector for initial values</span>
+            <input type="text" placeholder="" ng-model="formData.x">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Tolerance</span>
+            <input type="text" placeholder="" ng-model="formData.tol">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Lambda</span>
+            <input type="text" placeholder="" ng-model="formData.lambda">
+          </label>
+          <button class="button button-full button-positive" ng-click="jacobi()">
+            Solve system
+          </button>
+          <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+            Back
+          </button>
+        </div>
+      </div>
+      <div ng-switch-when="gaussseidel">
+        <h3><b>Gauss Seidel</b></h3>
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Iterations</span>
+            <input type="text" placeholder="F'(x)" ng-model="formData.n">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Solution matrix</span>
+            <input type="text" placeholder="" ng-model="formData.b">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Vector for initial values</span>
+            <input type="text" placeholder="" ng-model="formData.x">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Tolerance</span>
+            <input type="text" placeholder="" ng-model="formData.tol">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Lambda</span>
+            <input type="text" placeholder="" ng-model="formData.lambda">
+          </label>
+          <button class="button button-full button-positive" ng-click="gaussseidel()">
+            Solve system
+          </button>
+          <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+            Back
+          </button>
+        </div>
+      </div>
+      <div ng-switch-when="gausssimple">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Solution matrix</span>
+          <input type="text" placeholder="" ng-model="formData.b">
+        </label>
+        <div class="list">
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Pivot Method
+            </div>
+            <select ng-model="formData.p">
+              <option value="p">Partial</option>
+              <option value="t">Total</option>
+            </select>
+          </label>
+        </div>
+        <button class="button button-full button-positive" ng-click="gausssimple()">
+          Solve system
+        </button>
+        <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+          Back
+        </button>
+      </div>
+      <div ng-switch-when="cholesky">
+        <button class="button button-full button-positive" ng-click="cholesky()">
+          Solve system
+        </button>
+        <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+          Back
+        </button>
+      </div>
+      <div ng-switch-when="crout">
+        <button class="button button-full button-positive" ng-click="crout()">
+          Solve system
+        </button>
+        <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+          Back
+        </button>
+      </div>
+      <div ng-switch-when="doolittle">
+        <button class="button button-full button-positive" ng-click="doolittle()">
+          Solve system
+        </button>
+        <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+          Back
+        </button>
+      </div>
+      <div ng-switch-default>
+        <div class="list">
+          <div class="item">
+            <a class="item" ng-click="changeMethod('jacobi')" >
+              Jacobi
+            </a>
+            <a class="item" ng-click="changeMethod('gaussseidel')">
+              GaussSeidel
+            </a>
+            <a class="item" ng-click="changeMethod('gausssimple')" >
+              Gauss Simple elimination
+            </a>
+            <a class="item" ng-click="changeMethod('cholesky')">
+              Cholesky
+            </a>
+            <a class="item" ng-click="changeMethod('crout')" >
+              Crout
+            </a>
+            <a class="item" ng-click="changeMethod('doolittle')">
+               DooLittle
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
+
+<script id="results.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+    <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="modal.hide()"></a>
+      <h1 class="title">Results</h1>
+    </ion-header-bar>
+    <ion-content>
+    <br>
+    <h3><b>Result</b></h3>
+    <h4>{{res.message}}</h4>
+    <a class="button icon-left ion-chevron-left button-positive" ng-click="modal.hide()"> Back</a>
+    </ion-content>
+  </ion-modal-view>
+</script>

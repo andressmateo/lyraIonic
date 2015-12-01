@@ -51,9 +51,161 @@ angular.module('starter.controllers', [])
     { title: 'Cowbell', id: 6 }
   ];
 })
+.controller('InterpolationCtrl', function($http, $scope, $ionicModal, $httpParamSerializer) {
+  $scope.formData = {};
+  $scope.iterations = [];
+  $scope.succes = false;
 
+  $scope.changeMethod = function(method){
+    $scope.method = method;
+    $scope.formData.method = method;
+  }
+
+  $scope.showModal = function(){
+    $ionicModal.fromTemplateUrl('results.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+         $scope.modal.show();
+      });
+  };
+
+})
 .controller('MatrixCtrl', function($http, $scope, $ionicModal, $httpParamSerializer) {
-  
+  $scope.formData = {};
+  $scope.iterations = [];
+  $scope.succes = false;
+
+  $scope.changeMethod = function(method){
+    $scope.method = method;
+    $scope.formData.method = method;
+  }
+
+  $scope.showModal = function(){
+    $ionicModal.fromTemplateUrl('results.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+         $scope.modal.show();
+      });
+  };
+
+  $scope.jacobi = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        url: 'http://wmcia.herokuapp.com/api/equationsystems/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        alert(res.data.status);
+    }
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
+  $scope.gaussseidel = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        url: 'http://wmcia.herokuapp.com/api/equationsystems/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        alert(res.data.status);
+    }
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
+  $scope.gausssimple = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        url: 'http://wmcia.herokuapp.com/api/equationsystems/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        alert(res.data.status);
+    }
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
+  $scope.cholesky = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        url: 'http://wmcia.herokuapp.com/api/equationsystems/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        alert(res.data.status);
+    }
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
+  $scope.crout = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        url: 'http://wmcia.herokuapp.com/api/equationsystems/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        alert(res.data.status);
+    }
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
+  $scope.doolittle = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        url: 'http://wmcia.herokuapp.com/api/equationsystems/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        alert(res.data.status);
+    }
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
 })
 
 .controller('LinearEcuationsCtrl', function($http, $scope, $ionicModal, $httpParamSerializer) {

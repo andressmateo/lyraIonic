@@ -1,0 +1,42 @@
+<ion-view view-title="Interpolation Methods">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Write the X's vector</span>
+        <input type="text" placeholder="X: [1,2,3]" ng-model="formData.xs">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Write the Y's vector</span>
+        <input type="text" placeholder="Y: [1,2,3]" ng-model="formData.ys">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Value</span>
+        <input type="text" placeholder="2.5" ng-model="formData.value">
+      </label>
+    </div>
+    <h3><b>Interpolate By</b></h3>
+    <button class="button button-full button-positive" ng-click="newton()">
+      Newton
+    </button>
+    <button class="button button-full button-positive" ng-click="lagrange()">
+      Lagrange
+    </button>
+    <button class="button button-full button-positive" ng-click="neville()">
+      Neville
+    </button>
+  </ion-content>
+</ion-view>
+<script id="results.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+    <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="modal.hide()"></a>
+      <h1 class="title">Results</h1>
+    </ion-header-bar>
+    <ion-content>
+    <br>
+    <h3><b>Result</b></h3>
+    <h4>{{res.message}}</h4>
+    <a class="button icon-left ion-chevron-left button-positive" ng-click="modal.hide()"> Back</a>
+    </ion-content>
+  </ion-modal-view>
+</script>
