@@ -106,7 +106,24 @@ Maximum number of iterations allowed</span>
           Back
         </button>
       </div>
-      <div ng-switch-when="multiple">
+      <div ng-switch-when="multiple_root">
+        <h3><b>Multiple Root</b></h3>
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">First derivate of Fx</span>
+            <input type="text" placeholder="F'(x)" ng-model="formData.fn_p">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Second derivate of Fx</span>
+            <input type="text" placeholder="F''(x)" ng-model="formData.fn_p_p">
+          </label>
+        </div>
+        <button class="button button-full button-positive" ng-click="multiple()">
+          Solve Ecuation
+        </button>
+        <button class="button button-full button-calm" ng-click="changeMethod('aa')">
+          Back
+        </button>
       </div>
       <div ng-switch-default>
         <div class="list">
@@ -126,7 +143,7 @@ Maximum number of iterations allowed</span>
             <a class="item" ng-click="changeMethod('secant')" >
               Secant
             </a>
-            <a class="item" ng-click="changeMethod('multiple')">
+            <a class="item" ng-click="changeMethod('multiple_root')">
                Multiple Roots
             </a>
           </div>

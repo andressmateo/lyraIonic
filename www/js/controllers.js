@@ -52,6 +52,10 @@ angular.module('starter.controllers', [])
   ];
 })
 
+.controller('MatrixCtrl', function($http, $scope, $ionicModal, $httpParamSerializer) {
+  
+})
+
 .controller('LinearEcuationsCtrl', function($http, $scope, $ionicModal, $httpParamSerializer) {
 
   $scope.method;
@@ -188,6 +192,33 @@ angular.module('starter.controllers', [])
         for (var i = 0; i < res.data.table.iter; i++){
           var iter = {error:res.data.table.error[i],
           i:i, ym: res.data.table.xn[i]};
+          $scope.iterations.push(iter);
+        }
+    }
+      //alert($scope.iterations.length)
+      $scope.showModal();
+      $scope.res = res.data;
+    })
+  }
+
+  $scope.multiple = function(){
+    if($scope.formData.e){
+      $scope.formData.e = 1;
+    }
+    $http({
+        method: 'POST',
+        //url: 'http://127.0.0.1:5000/api/rootmethods/',
+        url: 'http://wmcia.herokuapp.com/api/rootmethods/',
+        data: $httpParamSerializer($scope.formData),  // pass in data as string
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(res){
+      //alert(res.data.table.iter);
+      if(res.data.status=="SUCESS"){
+        //alert(res.data.status);
+        $scope.succes = true;
+        for (var i = 0; i < res.data.table.iter; i++){
+          var iter = {error:res.data.table.error[i],
+          i:i, ym: res.data.table.ys[i]};
           $scope.iterations.push(iter);
         }
     }

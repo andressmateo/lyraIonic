@@ -78,6 +78,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
+    .state('app.matrix', {
+      url: '/matrix',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/linearEcuations/matrix.html',
+          controller: 'MatrixCtrl'
+        }
+      }
+    })
+
   .state('app.single', {
     url: '/playlists/:playlistId',
     views: {
